@@ -1,0 +1,40 @@
+{
+  "name": "react-note-app-demo",
+  "version": "1.0.0",
+  "description": "a note app using react",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build",
+    "deploy": "NODE_ENV=production webpack -p --config webpack.production.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elric-pp/react-note-app-demo.git"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "pp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Elric-pp/react-note-app-demo/issues"
+  },
+  "homepage": "https://github.com/Elric-pp/react-note-app-demo#readme",
+  "devDependencies": {
+    "babel-core": "^5.8.23",
+    "babel-loader": "^5.3.2",
+    "css-loader": "^0.17.0",
+    "react": "^0.13.3",
+    "sass-loader": "^2.0.1",
+    "style-loader": "^0.12.3",
+    "webpack": "^1.12.0",
+    "webpack-dev-server": "^1.10.1"
+  },
+  "dependencies": {
+    "q": "^1.4.1",
+    "reflux": "^0.2.12",
+    "superagent": "^1.3.0"
+  }
+}
