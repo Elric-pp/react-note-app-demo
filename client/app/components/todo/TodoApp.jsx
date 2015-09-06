@@ -1,6 +1,7 @@
 var React = require('react');
 var TodoListBox = require('./TodoListBox.jsx');
 var TodoCreateBox = require('./TodoCreateBox.jsx');
+require('./style/todo.scss')
 
 var TodoApp = React.createClass({
     getInitialState: function() {
@@ -17,9 +18,9 @@ var TodoApp = React.createClass({
 
     render: function() {
         return (
-            <div>
-                <TodoListBox onEdit={this.onEdit} onAdd={this.onAdd}/>
+            <div className="todo-wrap">
                 <TodoCreateBox id={this.state.curEdited}/>
+                <TodoListBox onEdit={this.onEdit} onAdd={this.onAdd}/>
             </div>
         )
     }

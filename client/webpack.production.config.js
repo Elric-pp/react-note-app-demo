@@ -16,6 +16,10 @@ var config = {
       // 这里再也不需通过任何第三方来加载
       exclude: [node_modules_dir],
       loader: 'babel'
+    },{
+      test: /\.scss$/,
+      exclude: [node_modules_dir],
+      loader: 'style!css!sass'
     }]
   }
 };

@@ -34,7 +34,7 @@ module.exports.add = function * add(data, next) {
     if (!inserted) {
         this.throw(405, "can not add")
     };
-    this.body = 'done!';
+    this.body = yield todos.find({});
 }
 
 module.exports.remove = function * remove(id, next) {
@@ -56,7 +56,7 @@ module.exports.remove = function * remove(id, next) {
     if (!removed) {
         this.throw(405, "Unable to delete")
     } else {
-        this.body = "done!"
+        this.body = yield todos.find({});
     }
 
 }
@@ -70,8 +70,7 @@ module.exports.update = function * update(data, next) {
         limit: '1kb'
     })
 
-    var todo = yield todos.find({}, {
-        'skip': data.id - 1,
+    var todo = yield todos.find({_id: data._id}, {
         'limit': 1
     })
 
@@ -79,14 +78,17 @@ module.exports.update = function * update(data, next) {
         this.throw(404, 'todo with id =' + id + 'was not found');
     };
 
-    var update = todos.update(todo[0], {
-        $set: data
+
+    var update = todos.findAndModify({_id: todo[0]._id}, {
+        $set: data.todo
+    }, function(err) {
+        console.log(err)
     })
 
     if (!update) {
         this.throw(405, "Unable to update");
     } else {
-        this.body = "done";
+        this.body = yield todos.find({});
     }
 
 }

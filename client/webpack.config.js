@@ -22,7 +22,7 @@ var config = {
             test: /\.css$/,
             loader: 'style!css'
         }, {
-            test: /\.sass$/,
+            test: /\.scss$/,
             loader: 'style!css!sass'
         }],
         noParse: [pathToReact]

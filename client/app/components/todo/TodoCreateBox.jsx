@@ -6,10 +6,9 @@ var TodoStore = require('../../../stores/TodoStore.js');
 var TodoCreateBox = React.createClass({
     handleSave: function(todoText, id) {
         if (id) {
-            TodoActions.editTodo({_id:id, text: todoText});
+            TodoActions.editTodo({_id:id, todo: {text: todoText}});
         } else {
             TodoActions.createTodo({text:todoText, date: Date.now(), done: false})
-            //修改_id
         }
     },
 
@@ -21,9 +20,9 @@ var TodoCreateBox = React.createClass({
         };
 
         return (
-            <div>
+            //<div>
                 <TextArea onSave={this.handleSave} id={this.props.id} todoText={todo ? todo.text : ""} />
-            </div>    
+            //</div>    
         );
     }
 });

@@ -7,10 +7,10 @@ var Todo = React.createClass({
         this.props.onSelect(id);
     },
 
-    handleFinish: function() {
-        console.log(!this.props.todo.done)
+    handleFinish: function(event) {
+        console.log(event.target)
+        event.stopPropagation();
         this.props.todo.done = !this.props.todo.done;
-        console.log(this.props.todo)
         this.props.onFinish(this.props.todo)
     },
 
@@ -23,7 +23,7 @@ var Todo = React.createClass({
 
         var done = this.props.todo.done ? 'done ' : null;
         return (
-                <div href="javascript:;" className={"todo-item " + active + done} onClick={this.handleEdit.bind(null, todo._id)}>
+                <div className={"todo-item " + active + done} onClick={this.handleEdit.bind(null, todo._id)}>
                     {title}
                     <a onClick={this.handleFinish}>done</a>
                 </div>

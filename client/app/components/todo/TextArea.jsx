@@ -30,6 +30,8 @@ var TextArea = React.createClass({
             todoText: nextProps.todoText 
         });
 
+        this.refs.textArea.getDOMNode().focus();
+
         if (!nextProps.id) {
             this.refs.textArea.getDOMNode().focus();
         };
@@ -37,9 +39,9 @@ var TextArea = React.createClass({
 
     render: function() {
         return (
-            <div>
-                <input className="text" ref="textArea"  value={this.state.todoText} onChange={this.handleChange}></input><br/>
-                <input type="button" className="btn" value="save" onClick={this.handleSave} />    
+            <div className="todo-text-wrap">
+                <input className="todo-text" ref="textArea"  value={this.state.todoText} onChange={this.handleChange}></input>
+                <span className="todo-text-save"  onClick={this.handleSave} >save</span>    
             </div>
         );
     }

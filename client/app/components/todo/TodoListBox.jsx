@@ -10,14 +10,12 @@ var TodoListBox = React.createClass({
     },
 
     onChange: function(todos) {
-        console.log(Date.now())
         this.setState({
             todos: todos
         });
     },
 
     componentDidMount: function() {
-        console.log(Date.now())
         this.unsubscribe = TodoStore.listen(this.onChange);
     },
 
@@ -32,12 +30,12 @@ var TodoListBox = React.createClass({
     },
 
     handleFinish: function(todo) {
-        TodoActions.finishTodo(todo);
+        TodoActions.finishTodo({_id: todo._id, todo:{done: todo.done}});
     },
 
     render: function() {
         return (
-            <div>
+            <div className="todo-list-wrap">
                 <div><a href="" onClick={this.onAdd}>Add New</a></div>
                 <TodoList ref="todoList" todos={this.state.todos} onEdit={this.props.onEdit} onFinish={this.handleFinish} />
             </div>
