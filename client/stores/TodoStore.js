@@ -3,7 +3,6 @@ var request = require('superagent')
 var TodoActions = require('../actions/TodoActions');
 // var Q = require('q');
 // var defer = Q.defer();
-var host = 'http://localhost:3000/'
 var _todos = [];
 
 var TodoStore = Reflux.createStore({
@@ -11,13 +10,14 @@ var TodoStore = Reflux.createStore({
         this.listenTo(TodoActions.createTodo, this.onCreate);
         this.listenTo(TodoActions.editTodo, this.onEdit);
         this.listenTo(TodoActions.finishTodo, this.onFinish);
-        this.listenTo(TodoActions.initialTodo, this.onInit)
+        this.listenTo(TodoActions.initialTodo, this.onInit);
+        this.listenTo(TodoActions.removeTodo, this.onRemove);
     },
 
     onInit: function(){
         var self = this;
           request
-            .get(host + '/todos')
+            .get('/todos')
             .end(function(err, res) {
                 if (err) {
                     console.log(err)
@@ -28,7 +28,7 @@ var TodoStore = Reflux.createStore({
     },
 
     onCreate: function(todo) {
-        var url =host + '/todos/add';
+        var url ='/todos/add';
         var self = this;
         request
             .post(url)
@@ -45,7 +45,7 @@ var TodoStore = Reflux.createStore({
 
     onEdit: function(todo) {
         var self = this;
-        var url = host + '/todos/update';
+        var url = '/todos/update';
             request
                 .post(url)
                 .send(todo)
@@ -62,7 +62,7 @@ var TodoStore = Reflux.createStore({
 
     onFinish: function(todo) {
         var self = this;
-        var url = host + '/todos/update'
+        var url = '/todos/update'
         request
             .post(url)
             .send(todo)
@@ -77,31 +77,21 @@ var TodoStore = Reflux.createStore({
             })
     },
 
-    // onInit: function(){},
-    // onCreate: function(todo){
-    //     _todos.push(todo);
-    //     this.trigger(_todos);
-    // },
+    onRemove: function(id) {
+        var self = this;
+        var url = '/todos/del';
+        request
+            .post(url)
+            .send(id)
+            .end(function(err, res) {
+                if (err) {
+                    console.log(err)
+                };
+                _todos = res.body;
+                self.trigger(_todos);
+            })
+    },
 
-    // onEdit: function(){
-    //     for (var i = 0; i < _todos.length; i++) {
-    //         if (_todos[i]._id === todo._id) {
-    //             _todos[i].text = todo.todo.text;
-    //             this.trigger(_todos);
-    //             break;
-    //         };
-    //     };
-    // },
-
-    // onFinish: function(){
-    //     for (var i = 0; i < _todos.length; i++) {
-    //         if (_todos[i]._id === todo._id) {
-    //             _todos[i].done = todo.todo.done;
-    //             this.trigger(_todos);
-    //             break;
-    //         };
-    //     };
-    // },
 
     getTodos: function() {
             return _todos;

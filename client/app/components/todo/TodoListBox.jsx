@@ -33,11 +33,16 @@ var TodoListBox = React.createClass({
         TodoActions.finishTodo({_id: todo._id, todo:{done: todo.done}});
     },
 
+    handleRemove: function(id) {
+        TodoActions.removeTodo({_id: id});
+    },
+
     render: function() {
         return (
             <div className="todo-list-wrap">
-                <div><a href="" onClick={this.onAdd}>Add New</a></div>
-                <TodoList ref="todoList" todos={this.state.todos} onEdit={this.props.onEdit} onFinish={this.handleFinish} />
+                <div><i className="anticon anticon-plus-circle-o" onClick={this.onAdd} ></i></div>
+                <TodoList ref="todoList" todos={this.state.todos} onEdit={this.props.onEdit} 
+                    onFinish={this.handleFinish} onRemove={this.handleRemove} />
             </div>
         )
     }

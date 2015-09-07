@@ -14,6 +14,11 @@ var Todo = React.createClass({
         this.props.onFinish(this.props.todo)
     },
 
+    handleRemove: function(event) {
+        event.stopPropagation();
+        this.props.onRemove(this.props.todo._id)
+    },
+
     render: function() {
         var todo = this.props.todo;
 
@@ -25,7 +30,8 @@ var Todo = React.createClass({
         return (
                 <div className={"todo-item " + active + done} onClick={this.handleEdit.bind(null, todo._id)}>
                     {title}
-                    <a onClick={this.handleFinish}>done</a>
+                    <i className="anticon anticon-check-circle-o pull-right" onClick={this.handleFinish}></i>
+                    <i className="anticon anticon-cross-circle-o pull-right" onClick={this.handleRemove}></i>
                 </div>
         )
     }

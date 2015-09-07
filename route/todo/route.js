@@ -7,7 +7,7 @@ app.use(route.get('/todos', todos.all))
 
 app.use(route.post('/todos/add', todos.add))
 
-app.use(route.post('/todos/del', todos.del))
+app.use(route.post('/todos/del', todos.remove))
 
 app.use(route.post('/todos/update', todos.update))
 

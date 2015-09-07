@@ -4,7 +4,8 @@ var TodoActions = Reflux.createActions([
     "createTodo",
     "editTodo",
     "finishTodo",
-    "initialTodo"
+    "initialTodo",
+    "removeTodo"
 ]);
 
 module.exports = TodoActions;

@@ -40,7 +40,7 @@ var TextArea = React.createClass({
     render: function() {
         return (
             <div className="todo-text-wrap">
-                <input className="todo-text" ref="textArea"  value={this.state.todoText} onChange={this.handleChange}></input>
+                <input className="ant-input" ref="textArea"  value={this.state.todoText} onChange={this.handleChange}></input>
                 <span className="todo-text-save"  onClick={this.handleSave} >save</span>    
             </div>
         );

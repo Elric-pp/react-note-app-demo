@@ -37,21 +37,28 @@ module.exports.add = function * add(data, next) {
     this.body = yield todos.find({});
 }
 
-module.exports.remove = function * remove(id, next) {
+module.exports.remove = function * remove(data, next) {
+    console.log('hello')
     if ("POST" != this.method) {
         return yield next;
     };
 
-    var todo = yield todos.find({}, {
-        'skip': id - 1,
-        'limit': 1
+    var data = yield parse(this, {
+        limit: '1kb'
     })
 
+    console.log(data)
+    var todo = yield todos.find({_id: data._id}, {
+        'limit': 1
+    })
+    console.log(todo);
+
+
     if (todo.length === 0) {
-        this.throw(404, 'todo with id =' + id + 'was not found');
+        this.throw(404, 'todo with id =' + data._id + 'was not found');
     };
 
-    var removed = todos.remove(book[0]);
+    var removed = todos.remove(todo[0]);
 
     if (!removed) {
         this.throw(405, "Unable to delete")
