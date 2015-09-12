@@ -5,7 +5,7 @@ require('./style/todo.scss')
 
 var TodoApp = React.createClass({
     getInitialState: function() {
-        return {id: null};
+        return {curEdited: null};
     },
 
     onEdit: function(id) {

@@ -2,9 +2,9 @@ var Reflux = require('reflux');
 
 var MusicActions = Reflux.createActions([
     "initialMusic",
-    "playSong",
+    "search",
     "addSong",
     "removeSong"
-])
+]);
 
 module.exports = MusicActions;

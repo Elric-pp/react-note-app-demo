@@ -7,6 +7,11 @@ var Todo = React.createClass({
         this.props.onSelect(id);
     },
 
+    handleHover: function(id, event) {
+        event.stopPropagation();
+        this.props.onHover(id);
+    },
+
     handleFinish: function(event) {
         console.log(event.target)
         event.stopPropagation();
@@ -19,19 +24,25 @@ var Todo = React.createClass({
         this.props.onRemove(this.props.todo._id)
     },
 
+
     render: function() {
         var todo = this.props.todo;
 
         var title = todo.text.length >= 20 ? todo.text.substring(0, 20) : todo.text;
 
-        var active = this.props.active ? 'active ' : null;
+        var active = this.props.active ? 'active ' : "";
 
-        var done = this.props.todo.done ? 'done ' : null;
+        var hover = this.props.hover ? 'show' : "";
+
+        var done = this.props.todo.done ? 'done ' : "";
         return (
-                <div className={"todo-item " + active + done} onClick={this.handleEdit.bind(null, todo._id)}>
+                <div className={"todo-item " + active + done}
+                         onClick={this.handleEdit.bind(null, todo._id)}
+                         onMouseEnter={this.handleHover.bind(null, todo._id)} 
+                         onMouseLeave={this.handleHover.bind(null, "")}>
                     {title}
-                    <i className="anticon anticon-check-circle-o pull-right" onClick={this.handleFinish}></i>
-                    <i className="anticon anticon-cross-circle-o pull-right" onClick={this.handleRemove}></i>
+                    <i className={"anticon anticon-check-circle-o pull-right todo-item-icon hide" + hover} onClick={this.handleFinish}></i>
+                    <i className={"anticon anticon-cross-circle-o pull-right  todo-item-icon hide" + hover} onClick={this.handleRemove}></i>
                 </div>
         )
     }

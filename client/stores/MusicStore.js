@@ -6,14 +6,70 @@ var _songs = [];
 
 var MusicStore = Reflux.createStore({
     init: function() {
-        this.listento(MusicActions.initialMusic, this.onInit)
-        this.listento(MusicActions.playSong, this.onPlay)
-        this.listento(MusicActions.addSong, this.onAdd)
-        this.listento(MusicActions.removeSong, this.onRemove)
+        this.listenTo(MusicActions.initialMusic, this.onInit);
+        this.listenTo(MusicActions.search, this.onSearch);
+        this.listenTo(MusicActions.addSong, this.onAdd);
+        this.listenTo(MusicActions.removeSong, this.onRemove);
     },
 
-    onInit: function() {},
-    onPlay: function() {},
-    onAdd: function() {},
-    onRemove: function() {},
+    onInit: function() {
+        var self = this;
+        request
+            .get('/music')
+            .end(function(err, res) {
+                if (err) {
+                    console.log(err)
+                };
+                _songs = res.body;
+                console.log(_songs);
+                self.trigger(_songs);
+            })
+    },
+
+    onAdd: function(data) {
+        var self = this;
+        request
+            .post('/music/addone')
+            .send(data)
+            .end(function(err, res) {
+                if (err) {
+                    console.log(err)
+                };
+                _songs = res.body;
+                console.log(_songs);
+                self.trigger(_songs);
+            })
+    },
+
+    onRemove: function(id) {
+        var self = this;
+        request
+            .post('/music/remove')
+            .send({_id: id})
+            .end(function(err, res) {
+                if (err) {
+                    console.log(err)
+                };
+                _songs = res.body;
+                console.log(_songs);
+                self.trigger(_songs);
+            })
+    },
+
+    onSearch: function(data) {
+        var self = this;
+        request
+            .post('/music/search')
+            .send({s: data})
+            .end(function(err, res) {
+                if (err) {
+                    console.log(err)
+                };
+                _songs = res.body;
+                console.log(_songs);
+                self.trigger(_songs);
+            })
+    }
 })
+
+module.exports =MusicStore;

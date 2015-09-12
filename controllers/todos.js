@@ -100,12 +100,4 @@ module.exports.update = function * update(data, next) {
 
 }
 
-module.exports.getByDate = function * getByDate(next) {
-    if ("GET" != this.method) {
-        return yield next;
-    };
-    this.body = yield todos.find({});
-
-}
-
 

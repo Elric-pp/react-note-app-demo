@@ -1,5 +1,5 @@
 .todo-wrap {
-    width: 250px;
+    width: 210px;
     height: auto;
     background: #ccc;
     display: flex;
@@ -18,18 +18,21 @@
             border-radius: 3px;
         }
         .todo-text-save {
-            width: 40px;
-            height: 24px;
-            line-height: 24px;
-            text-align: center;
-            border: 1px solid #eaeaea;
-            border-radius: 3px;
+            margin-top: 5px;
         }
     }
     .todo-list-wrap {
         width: 200px;
+        font-size: 20px;
         .todo-item {
             font-size: 20px;
+            cursor: pointer;
+            .todo-item-icon {
+                margin-right: 5px;
+            }
+        }
+        .active {
+            background: #aaa;
         }
     }
 }
