@@ -21,7 +21,7 @@ var TodoCreateBox = React.createClass({
 
         return (
             //<div>
-                <TextArea onSave={this.handleSave} id={this.props.id} todoText={todo ? todo.text : ""} />
+                <TextArea onSave={this.handleSave} id={this.props.id} todoText={todo ? todo.text : ""} onAdd={this.props.onAdd} />
             //</div>    
         );
     }

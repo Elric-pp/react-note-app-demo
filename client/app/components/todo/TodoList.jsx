@@ -9,10 +9,6 @@ var TodoList = React.createClass({
         };
     },
 
-    setActiveTodo: function(id) {
-        this.setState({activeTodoId: id});
-    },
-
     setHoverTodo: function(id) {
         this.setState({hoverTodoId: id});
     },
@@ -23,11 +19,10 @@ var TodoList = React.createClass({
         var todoNodes = todos.map(function(todo){
             return (
                 <Todo key={todo._id}
-                            active={self.state.activeTodoId===todo._id}
+                            active={self.props.activeTodoId===todo._id}
                             hover={self.state.hoverTodoId===todo._id}
                             todo={todo}
                             onEdit={self.props.onEdit}
-                            onSelect={self.setActiveTodo}
                             onFinish={self.props.onFinish}
                             onRemove={self.props.onRemove}
                             onHover={self.setHoverTodo} />

@@ -14,16 +14,24 @@ var TextArea = React.createClass({
         });
     },
 
-    handleSave: function(){
-        this.props.onSave(this.state.todoText, this.props.id);
+    handleSave: function(event){
+        if (event.charCode === 13) {
+            this.props.onSave(this.state.todoText, this.props.id);
 
-        if (!this.props.id) {
-            console.log(this.refs);
+            //if (!this.props.id) {
+                console.log(this.refs);
             this.refs.textArea.getDOMNode().value = '';
+            this.refs.textArea.getDOMNode().blur();
             this.setState({
                 todoText: '' 
             });
+            //};
+
         };
+    },
+
+    handleBlur: function() {
+        this.props.onAdd();
     },
 
     componentWillReceiveProps: function(nextProps) {
@@ -34,15 +42,19 @@ var TextArea = React.createClass({
         this.refs.textArea.getDOMNode().focus();
 
         if (!nextProps.id) {
-            this.refs.textArea.getDOMNode().focus();
+            this.refs.textArea.getDOMNode().blur();
         };
     },
 
     render: function() {
         return (
-            <div className="todo-text-wrap">
-                <input className="ant-input" ref="textArea"  value={this.state.todoText} onChange={this.handleChange}></input>
-                <a className="ant-btn ant-btn-primary ant-btn-sm todo-text-save "  onClick={this.handleSave} >save</a>    
+            <div >
+                <input  ref="textArea"   className="todo-text-wrap ant-input" 
+                             value={this.state.todoText}
+                             onChange={this.handleChange}
+                             onKeyPress={this.handleSave}
+                             onBlur={this.handleBlur} >
+                </input>
             </div>
         );
     }

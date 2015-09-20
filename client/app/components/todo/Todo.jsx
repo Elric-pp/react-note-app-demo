@@ -4,7 +4,6 @@ var Todo = React.createClass({
     handleEdit: function(id, event) {
         event.preventDefault();
         this.props.onEdit(id);
-        this.props.onSelect(id);
     },
 
     handleHover: function(id, event) {

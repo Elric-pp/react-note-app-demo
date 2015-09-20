@@ -23,12 +23,6 @@ var TodoListBox = React.createClass({
         this.unsubscribe();
     },
 
-    onAdd: function(event) {
-        event.preventDefault();
-        this.props.onAdd();
-        this.refs.todoList.setActiveTodo(null);
-    },
-
     handleFinish: function(todo) {
         TodoActions.finishTodo({_id: todo._id, todo:{done: todo.done}});
     },
@@ -40,9 +34,8 @@ var TodoListBox = React.createClass({
     render: function() {
         return (
             <div className="todo-list-wrap">
-                <div><i className="anticon anticon-plus-circle-o" onClick={this.onAdd} ></i></div>
                 <TodoList ref="todoList" todos={this.state.todos} onEdit={this.props.onEdit} 
-                    onFinish={this.handleFinish} onRemove={this.handleRemove} />
+                    onFinish={this.handleFinish} onRemove={this.handleRemove} activeTodoId={this.props.activeTodoId} />
             </div>
         )
     }

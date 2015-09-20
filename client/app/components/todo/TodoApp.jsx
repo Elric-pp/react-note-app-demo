@@ -19,8 +19,8 @@ var TodoApp = React.createClass({
     render: function() {
         return (
             <div className="todo-wrap">
-                <TodoCreateBox id={this.state.curEdited}/>
-                <TodoListBox onEdit={this.onEdit} onAdd={this.onAdd}/>
+                <TodoCreateBox id={this.state.curEdited} onAdd={this.onAdd} />
+                <TodoListBox onEdit={this.onEdit} activeTodoId={this.state.curEdited} />
             </div>
         )
     }
