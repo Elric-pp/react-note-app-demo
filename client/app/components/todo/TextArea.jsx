@@ -18,6 +18,7 @@ var TextArea = React.createClass({
         this.props.onSave(this.state.todoText, this.props.id);
 
         if (!this.props.id) {
+            console.log(this.refs);
             this.refs.textArea.getDOMNode().value = '';
             this.setState({
                 todoText: '' 

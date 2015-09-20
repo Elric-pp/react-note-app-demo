@@ -2,12 +2,15 @@ var React = require('react');
 
 var Song = React.createClass({
 
+    onSelect: function() {
+        this.props.onSelect(this.props.index);
+    },
+
     render: function() {
-            console.log(this.props.music)
         return (
-            <div>
-                <span>{this.props.music.songName}</span>
-                <span>{this.props.music.userName}</span>
+            <div onClick={this.onSelect} className="music-song">
+                <span className="music-songname">{this.props.music.songName}</span>
+                <span className="music-username">{this.props.music.userName}</span>
             </div>
         );
     }

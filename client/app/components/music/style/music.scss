@@ -1,0 +1,136 @@
+
+
+
+.music-wrap {
+    display: flex;
+    flex-flow: row;
+    width: 1000px;
+    justify-content: center;
+    .music-box {
+        display: flex;
+        flex-flow: row nowrap;
+        background: -webkit-linear-gradient(top, #d1c7bb, #ECE2D6);
+        color: #fff;
+        padding: 10px;
+        border-radius: 10px;
+        width: 500px;
+        margin-right: 20px;
+        box-shadow: 0 2px 20px rgba(209,199,187, 0.7);
+        .music-playlist {
+            width: 55%;
+            padding: 20px;
+            .music-song {
+                line-height: 22px;
+                display: flex;
+                justify-content: space-between;
+                .music-songname {
+                    width: 70%;
+                }
+                .music-username {
+                    width: 20%;
+                }
+            }
+        }
+        .music-ctrl {
+            width: 45%;
+            padding: 20px;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-between;
+            .play-info {
+                height: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .info-img {
+                    width: 50%;
+                    height: 50%;
+                    border-radius: 100%;
+                    animation: rotatepic 10s linear 0s infinite;
+                }
+                @keyframes rotatepic {
+                    from {
+                        transform: rotate(0deg);
+                    }
+                    to {
+                        transform: rotate(360deg);
+                    }
+                }
+            }
+            .play-box {
+                height: 40%;
+                .play-status {
+                }
+                .play-ctrl {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    justify-content: center;
+                    align-items: center;
+                    .box-item {
+                        width: 30px;
+                        height: 30px;
+                        line-height: 30px;
+                        font-size: 14px;
+                        color: #CFBEAC;
+                        border-radius: 100%;
+                        background: -webkit-linear-gradient(top,#fff ,#E2D5C5);
+                        display: flex;
+                        cursor: pointer;
+                        box-shadow:-1px 3px 10px -4px rgba(0, 0, 0, 0.7);
+                        &:active {
+                            box-shadow: 0 3px 14px -1px rgba(0, 0, 0, 0.4);
+                        }
+                        .anticon {
+                            margin: 0 auto;
+                        }
+                    }
+                    .play, .pause {
+                        width: 40px;
+                        height: 40px;
+                        line-height: 40px;
+                        font-size: 18px;
+                        margin: 0 5px;
+                    }
+                    .play {
+                        .anticon {
+                            transform: translateX(3px)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .search-wrap {
+        display: flex;
+        flex-flow: column nowrap;
+        width: 220px;
+        .search-box {
+            height: 30px;
+            padding: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+            .input {
+                border: none;
+                height: 28px;
+                width: 200px;
+                outline: none;
+                border-radius:6px;
+                text-indent: 5px;
+            }
+        }
+        .search-list {
+            background:#ccc;
+            border-bottom-right-radius: 6px;
+            border-bottom-left-radius: 6px;
+            .result-song {
+                cursor: pointer;
+                padding: 3px 10px;
+                display: flex;
+                justify-content: space-between;
+                .result-songname {}
+                .result-username {}
+            }
+        }
+    }
+}

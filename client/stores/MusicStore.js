@@ -22,7 +22,7 @@ var MusicStore = Reflux.createStore({
                 };
                 _songs = res.body;
                 console.log(_songs);
-                self.trigger(_songs);
+                self.trigger({to: 'musicList' , data: _songs});
             })
     },
 
@@ -37,7 +37,7 @@ var MusicStore = Reflux.createStore({
                 };
                 _songs = res.body;
                 console.log(_songs);
-                self.trigger(_songs);
+                self.trigger({to: 'musicList' , data: _songs});
             })
     },
 
@@ -52,7 +52,7 @@ var MusicStore = Reflux.createStore({
                 };
                 _songs = res.body;
                 console.log(_songs);
-                self.trigger(_songs);
+                self.trigger({to: 'musicList' , data: _songs});
             })
     },
 
@@ -67,7 +67,7 @@ var MusicStore = Reflux.createStore({
                 };
                 _songs = res.body;
                 console.log(_songs);
-                self.trigger(_songs);
+                self.trigger({to: 'resultList' , data: _songs});
             })
     }
 })

@@ -31,22 +31,25 @@ module.exports.all = function* all(next) {
 
 
 //添加一首歌曲
-module.exports.addOne = function * addOne(data, next) {
+module.exports.addone = function* addone(data, next) {
     if ('POST' != this.method) {
         return yield next;
     };
+    console.log(data);
     var music = yield parse(this, {
         limit: '1kb'
     });
 
-    var inserted = yield todos.insert(music);
+    console.log(music);
+
+    var inserted = yield musics.insert(music);
     if (!inserted) {
         this.throw(405, "can not add")
     };
     this.body = yield musics.find({});
 }
 
-module.exports.remove = function * remove(data, next) {
+module.exports.remove = function* remove(data, next) {
     if ('POST' != this.method) {
         return yield next;
     };
@@ -95,7 +98,6 @@ function requestAll(string) {
                 console.log(err)
             };
             var json = JSON.parse(res.text)
-            console.log(this)
             list = json.data.data.list;
             deferred.resolve(list)
         })

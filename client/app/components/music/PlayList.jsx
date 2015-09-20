@@ -3,14 +3,16 @@ var Song = require('./Song.jsx')
 
 var PlayList = React.createClass({
 
+
     render: function() {
-        var lis = this.props.musicList.map(function(music) {
+        var self = this;
+        var lis = this.props.musicList.map(function(music, i) {
             return (
-                <Song music={music} />
+                <Song music={music}  onSelect={self.props.onSelect} index={i} />
             );
         })
         return (
-            <div>
+            <div className="music-playlist">
                 {lis}
             </div>
         );
