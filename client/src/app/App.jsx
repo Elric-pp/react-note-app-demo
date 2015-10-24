@@ -3,17 +3,17 @@ var TodoApp = require('./components/todo/TodoApp.jsx');
 var MusicBox = require('./components/music/MusicBox.jsx');
 var Nav = require('./components/Nav.jsx');
 require('./base.scss')
-
+require('./index.css')
 var App = React.createClass({
     getInitialState: function() {
         return {
-            curview: 'todo' 
+            curview: 'todo'
         };
     },
 
     changeView: function(view) {
         this.setState({
-            curview: view 
+            curview: view
         });
     },
 
@@ -25,7 +25,7 @@ var App = React.createClass({
                 return (<MusicBox />)
             };
         }()
-  
+
         return (
             <div className="container">
                     <div className="component">
